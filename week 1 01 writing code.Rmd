@@ -1,0 +1,26 @@
+---
+title: "Writing Code"
+author: "Renato Erazo"
+date: "2 de octubre de 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Directorio de trabajo
+
+Consultar el directorio de trabajo
+```{r}
+getwd()
+```
+Ver el contenido de un directorio
+```{r}
+dir()
+```
+Que se encuentra en el workspace
+```{r}
+ls()
+```
+
