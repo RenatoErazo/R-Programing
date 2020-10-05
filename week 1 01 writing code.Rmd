@@ -24,3 +24,11 @@ Que se encuentra en el workspace
 ls()
 ```
 
+##  Leer url
+
+```{r}
+con <- url("http://www.jhsph.edu","r")
+x <- readLines(con)
+head(x)
+```
+
