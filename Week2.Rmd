@@ -1,0 +1,32 @@
+---
+title: "Week2"
+author: "Renato Erazo"
+date: "8 de octubre de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loop while
+
+```{r}
+z <- 5
+while(z >=3 && z <= 10)
+{
+  print(z)
+  coin <- rbinom(1,1,0.5)
+  
+  if(coin == 1){ #Random walk
+      z <- z+1
+      
+  }else{
+      z <- z-1  
+    
+    }
+}
+  
+  
+```
+

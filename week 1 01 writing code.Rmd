@@ -83,8 +83,12 @@ max(hw1_data[condiciones,]$Ozone)
 month6 <- hw1_data$Month == 6
 mean(hw1_data[month6,]$Temp)
 ```
-#Wxtrac the subset of rows of the data frame where Ozone ara above 31 and Temp valie are above 90, what is the mean of Solar.R in this subset
+#Extrac the subset of rows of the data frame where Ozone ara above 31 and Temp valie are above 90, what is the mean of Solar.R in this subset
 ```{r}
-
+ozoneAbove31 <- hw1_data$Ozone >31
+TempAbove90 <- hw1_data$Temp >90
+ozoneAndTemp <- ozoneAbove31 & TempAbove90
+validData <- is.na(ozoneAndTemp)
+mean(hw1_data[!validData,]$Solar.R)
 ```
 

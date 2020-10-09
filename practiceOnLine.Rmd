@@ -1,0 +1,26 @@
+---
+title: "swirl"
+author: "Renato Erazo"
+date: "7 de octubre de 2020"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Intall swirl
+```{r}
+install.packages("swirl")
+library(swirl)
+```
+# Intall R Programming course
+```{r}
+install_from_swirl("R Programming")
+```
+#Start swirl
+```{r}
+swirl()
+
+```
+
