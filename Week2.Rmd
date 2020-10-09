@@ -29,4 +29,42 @@ while(z >=3 && z <= 10)
   
   
 ```
+## Functions 
+
+```{r}
+add2 <- function(x,y){
+  x+y
+}
+add2(4,3)
+```
+# Valores ,mayores a 10 en un vector
+```{r}
+above10 <- function(x){
+  use <- x > 10
+  x[use]
+}
+
+above <- function(x,n = 10){ #Default value 10
+  use <- x > n
+  x[use]
+}
+above(1:20,12)
+
+```
+# The next function calculate the mean of columns in dataset o dataFrame
+
+```{r}
+columMean <- function(x, removeNA = TRUE){
+  cn <- ncol(x)
+  means <- numeric(cn)
+  for (i in 1:cn)
+  {
+    means[i]<- mean(x[,i],na.rm = removeNA)
+  }
+  means
+}
+
+columMean(airquality)
+
+```
 
