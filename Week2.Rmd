@@ -2,7 +2,9 @@
 title: "Week2"
 author: "Renato Erazo"
 date: "8 de octubre de 2020"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -67,4 +69,95 @@ columMean <- function(x, removeNA = TRUE){
 columMean(airquality)
 
 ```
+## Scoping 
 
+# -------- Binding --- the function search() show the available library
+```{r}
+search()
+library("ggplot2")
+search()
+```
+# ---- Prueba de scoping
+```{r}
+prueba <- function(x){
+  x <- x +1
+  x
+}
+valor <- 5
+prueba(valor)
+valor
+```
+
+# ---- Enviroments, workspace, global, parent
+
+
+```{r}
+x <- 1 # Global  Segun yo
+y <- 2
+
+funcionAmbiente <- function(z){
+  x <- 3
+  print(c("-> En la función x", x))
+  print(c("-> En la función y", y))
+  
+  anidada <- function(w){
+    print(c("--> Función Anidada suma x,y,z,w", x+y+z+w))
+  }
+  
+  anidada(5)
+  
+  x + y + z
+}
+funcionAmbiente(4)
+print(c("> Fuera de la función luego de ejecutarla x", x))
+
+```
+# Lexcial scoping
+```{r}
+make.power <- function(n){
+  pow <- function(x){
+    x*n
+  }
+  pow
+}
+
+cube <- make.power(3)
+square <- make.power(2)
+otro <- make.power(4)
+cube(3)
+square(2)
+otro(2)
+```
+#Explorar las variables de ambiente
+```{r}
+ls(environment(cube))
+get("n",environment(cube))
+```
+#----- Forware functions
+
+```{r}
+y <- 10
+f <- function(x){
+  y <- 2
+  y^2 + g(x)
+}
+
+g <- function(x){
+  x*y
+}
+
+f(3)
+```
+# Lexical & dynamic Scoping
+
+```{r}
+g <- function(x){
+  a <- 3
+  x+a+y
+}
+y <- 3
+g(2)
+```
+
+
+                                                       
