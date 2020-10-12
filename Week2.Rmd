@@ -158,6 +158,47 @@ g <- function(x){
 y <- 3
 g(2)
 ```
+## ------------ Dates
 
+```{r}
+x <- as.Date("1970-01-01")
+class(x)
+unclass(x)
 
-                                                       
+```
+# -- Sys Time
+```{r}
+x <- Sys.time()
+x
+
+p <- as.POSIXlt(x)
+names(unclass(p))
+print(c("Día del segundos:   ",p$sec))
+
+print(c("Día del año", p$yday))
+```
+
+# ---- validaciones swirl
+
+```{r}
+TRUE && c(FALSE,TRUE,TRUE,FALSE)
+```
+```{r}
+"%p%" <- function(...){ # Remember to add arguments!
+  print(paste(...))
+  
+}
+'I' %p% 'Love' %p% 'R!' 
+
+```
+#------- EXAMEN
+
+# --> Warning
+```{r}
+x <- 1:10
+if(x>5){
+  x <- 0
+}
+```
+
+                                                        
