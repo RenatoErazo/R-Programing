@@ -1,0 +1,42 @@
+---
+title: "week4"
+author: "Renato Erazo"
+date: "29/10/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ------------ str function
+
+```{r}
+str(ls)
+
+x <- rnorm(100,2,4)
+summary(x)
+#Str de la variable x
+str(x)
+```
+## str aplicado a un dataset
+```{r}
+library(datasets)
+head(airquality)
+
+str(airquality)
+```
+## ----- str de una matriz
+```{r}
+m <- matrix(rnorm(100),10,10)
+
+str(m)
+
+m[,1]
+```
+## str con un split en un dataset
+```{r}
+s <- split(airquality,airquality$Month)
+str(s)
+```
+

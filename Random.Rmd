@@ -1,0 +1,75 @@
+---
+title: "random"
+author: "Renato Erazo"
+date: "29/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Using random numbers
+
+```{r}
+#Crear 10 valores de la distribuciòn normal
+
+rnorm(10)
+rnorm(10)
+
+#Ahora con lamisma secuencia
+
+print("-------------")
+set.seed(1)
+
+rnorm(10)
+rnorm(10)
+
+print("-------------")
+set.seed(1)
+
+rnorm(10)
+rnorm(10)
+
+
+```
+## Linear Model sample
+
+```{r}
+set.seed(20)
+x <- rnorm(100)
+e <- rnorm(100,0,2)
+y <- 0.5+2*x+e
+summary(y)
+
+plot(x,y)
+```
+# -----Modelo 2
+
+```{r}
+set.seed(1)
+x <- rnorm(100)
+
+log.mu <- 0.5 + 0.3*x
+y <- rpois(100, exp(log.mu))
+summary(y)
+
+plot(x,y)
+```
+## ----- Random Sampling
+
+```{r}
+set.seed(1)
+
+sample(1:10,4)
+sample(1:10,4)
+
+
+print("Sample letters")
+sample(letters,5)
+
+print("sample w/replacement")
+
+sample(1:10,replace = TRUE)
+```
+
