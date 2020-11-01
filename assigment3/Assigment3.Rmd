@@ -83,7 +83,7 @@ best <- function (state, restriccion)
     }
   
   
-  tipoRest <- c("heart attack", "heart failure", "pneumonia")
+  tipoRest <- c("Heart Attack", "Heart Failure", "Pneumonia")
   siTipo <- sum(sapply(tipoRest,function(x) x == restriccion)) == 0
   
   if(siTipo){
@@ -104,18 +104,33 @@ completo <- paste(prefijo,indice,sep = ".")
   
   ## ---- Cambio los nombre de columnas mas simple
   
-  names(subOutcome) = c("Estado","Hostital","Data")
+  names(subOutcome) = c("Estado","Hospital","Data")
   
-  ## --- Solo recuperar datos del estado seleccionado
+  ## --- Solo recuperar datos del estado/provincia seleccionado
   subOutcome <- subset(subOutcome,Estado == state)
   
-  subOutcome %>% group_by(State) %>% arrange(Data)
   
+  
+  
+  #texto a número
+
+  subOutcome$Data  <- as.numeric(subOutcome$Data)
+  
+  filtro <- subOutcome %>% arrange(Data)
+
   ## rate
   
-  
+  filtro
 }
 
-best("Quito","heart failure")
+best("TX","Heart Attack")
+
+
+best("TX","Heart Failure")
+
+best("MD","Heart Attack")
+
+
+best("MD","Pneumonia")
 ```
 
