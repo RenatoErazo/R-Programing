@@ -1,14 +1,11 @@
 ---
-title: "Assigmnment3"
+title: "Assigment3Ver2"
 author: "Renato Erazo"
-date: "29/10/2020"
+date: "1/11/2020"
 output:
-  word_document: default
+  pdf_document: default
   html_document: default
 ---
-
-
-
 
 ## Introduction
 Download the le ProgAssignment3-data.zip le containing the data for Programming Assignment 3 from
@@ -65,25 +62,31 @@ Write a function called best that take two arguments: the 2-character abbreviate
 
 Handling ties. If there is a tie for the best hospital for a given outcome, then the hospital names should be sorted in alphabetical order and the frst hospital in that set should be chosen (i.e. if hospitals \b", \c", and \f" are tied for best, then hospital \b" should be returned). 
 
-The function should use the following template.
+#Funcions para validar datos de entrada
 
 ```{r}
-best <- function (state, restriccion)
+
+validar <-function(ds,s,r)
 {
-  
   ## To Propercase
+ # if ("package:stringi" %in% search())
+  #{
+   # install.packages("stringi")
+  #}
+  library(stringi)
   require(stringi)
- 
-  restriccion <- stri_trans_general(restriccion, id = "Title")
-  print(restriccion)
+  
+  r <- stri_trans_general(r, id = "Title")
+  
+  print(r)
   
   
   ## Read outcome data
-  outcome <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+  outcome <- read.csv(ds, colClasses = "character")
   
   ## Check that state and outcome are valid
   
-  estadoOk <- sum(sapply(outcome$State,function(x) x == state)) == 0
+  estadoOk <- sum(sapply(outcome$State,function(x) x == s)) == 0
   
   if (estadoOk) {
      
@@ -92,13 +95,27 @@ best <- function (state, restriccion)
   
   
   tipoRest <- c("Heart Attack", "Heart Failure", "Pneumonia")
-  siTipo <- sum(sapply(tipoRest,function(x) x == restriccion)) == 0
+  siTipo <- sum(sapply(tipoRest,function(x) x == r)) == 0
   
   if(siTipo){
    
         stop('Invalid outcome')
   }
+  outcome
+}
+```
+
+
+
+
+The function should use the following template.
+
+```{r}
+best <- function (state, restriccion)
+{
   
+  restriccion <- stri_trans_general(restriccion, id = "Title")
+  outcome <- validar(ds = "outcome-of-care-measures.csv",s = state,r = restriccion)
   
   
   
@@ -106,8 +123,8 @@ best <- function (state, restriccion)
   
   library(dplyr)
   prefijo <- "Lower.Mortality.Estimate...Hospital.30.Day.Death..Mortality..Rates.from"
-indice <- sub(" ",".",restriccion)
-completo <- paste(prefijo,indice,sep = ".")
+  indice <- sub(" ",".",restriccion)
+  completo <- paste(prefijo,indice,sep = ".")
   subOutcome <- outcome %>% select(State,Hospital.Name,completo)
   
   ## ---- Cambio los nombre de columnas mas simple
@@ -155,12 +172,11 @@ subOutcome %>% filter(Data == mejor) %>% arrange(Data)
 
 
 
+
 ```
-
-## Ejemplo Best()
-
+## -----------------  Ejemplos
 ```{r}
- best("TX","heart Attack")
+best("LA","heart Attack")
 ```
 
 ## ---- 3Ranking hospitals by outcome in a state
@@ -184,7 +200,9 @@ rankhospital <- function(state, restriccion, num = "best") {
   ## Read outcome data
   ## Check that state and restriccion are valid
   
+  outcome <- validar("outcome-of-care-measures.csv",state,restriccion)
   
+  restriccion <- stri_trans_general(restriccion, id = "Title")
   
   
   
@@ -198,3 +216,5 @@ rankhospital <- function(state, restriccion, num = "best") {
   
 }
 ```
+
+
